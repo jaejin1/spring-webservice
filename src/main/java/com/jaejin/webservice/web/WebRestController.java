@@ -1,7 +1,7 @@
 package com.jaejin.webservice.web;
 
-import com.jaejin.webservice.domain.posts.PostsRepository;
-import com.jaejin.webservice.dto.posts.PostsSaveRequestsDto;
+import com.jaejin.webservice.dto.posts.PostsSaveRequestDto;
+import com.jaejin.webservice.service.PostsService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class WebRestController {
 
-    private PostsRepository postsRepository;
+    private PostsService postsService;
 
     @GetMapping("/hello")
     public String hello() {
@@ -20,7 +20,7 @@ public class WebRestController {
     }
 
     @PostMapping("/posts")
-    public void savePosts(@RequestBody PostsSaveRequestsDto dto){
-        postsRepository.save(dto.toEntity());
+    public void savePosts(@RequestBody PostsSaveRequestDto dto){
+        postsService.save(dto);
     }
 }
