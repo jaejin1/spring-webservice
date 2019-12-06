@@ -1,6 +1,7 @@
 package com.jaejin.webservice.service;
 
 import com.jaejin.webservice.domain.posts.PostsRepository;
+import com.jaejin.webservice.dto.posts.PostsDetailResponseDto;
 import com.jaejin.webservice.dto.posts.PostsMainResponseDto;
 import com.jaejin.webservice.dto.posts.PostsSaveRequestDto;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,13 @@ public class PostsService {
     public List<PostsMainResponseDto> findAllDesc() {
         return postsRepository.findAllDesc()
                 .map(PostsMainResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsDetailResponseDto> findPostById(Long id) {
+        return postsRepository.findPostById(id)
+                .map(PostsDetailResponseDto::new)
                 .collect(Collectors.toList());
     }
 }
