@@ -1,7 +1,9 @@
 package com.jaejin.webservice.domain.posts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.stream.Stream;
 
@@ -17,4 +19,11 @@ public interface PostsRepository extends JpaRepository<Posts, Long> {
     "FROM Posts p " +
     "WHERE p.id = ?1")
     Stream<Posts> findPostById(Long id);
+
+    @Modifying
+    @Query("UPDATE Posts p SET p.author = :author, p.content = :content, p.title = :title WHERE p.id = :id")
+    void editPost(@Param("author") String author,
+                  @Param("content") String content,
+                  @Param("title") String title,
+                  @Param("id") Long id);
 }

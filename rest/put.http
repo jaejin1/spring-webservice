@@ -1,0 +1,10 @@
+PUT http://localhost:8080/posts/3
+Content-Type: application/json
+
+{
+  "title": "updatetest",
+  "content": "test content",
+  "author": "teste23232r"
+}
+
+###

@@ -4,6 +4,7 @@ import com.jaejin.webservice.domain.posts.PostsRepository;
 import com.jaejin.webservice.dto.posts.PostsDetailResponseDto;
 import com.jaejin.webservice.dto.posts.PostsMainResponseDto;
 import com.jaejin.webservice.dto.posts.PostsSaveRequestDto;
+import com.jaejin.webservice.dto.puts.PutsSaveRequestDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,15 @@ public class PostsService {
     @Transactional // DB 데이터 등록/수정/삭제 하는 service 메소드는 필수임.
     public Long save(PostsSaveRequestDto dto) {
         return postsRepository.save(dto.toEntity()).getId();
+    }
+
+    @Transactional
+    public void edit(PutsSaveRequestDto dto, Long id) {
+        postsRepository.editPost(
+                dto.toEntity().getAuthor(),
+                dto.toEntity().getContent(),
+                dto.toEntity().getTitle(),
+                id);
     }
 
     @Transactional(readOnly = true)

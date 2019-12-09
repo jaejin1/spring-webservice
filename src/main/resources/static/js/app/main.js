@@ -4,6 +4,9 @@ var main = {
         $('#btn-save').on('click', function () {
             _this.save();
         });
+        $('#btn-edit').on('click', function() {
+            _this.edit();
+        })
     },
     save : function () {
         var data = {
@@ -14,17 +17,37 @@ var main = {
         $.ajax({
             type: 'POST',
             url: '/posts',
-            dataType: 'json',
             contentType:'application/json; charset=utf-8',
-            data: JSON.stringify(data)
+            data: JSON.stringify(data),
+            error:function(request,status,error){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
         }).done(function() {
-            alert('insert data.');
+            location.reload();
+        }).fail(function (error) {
+            alert(error);
+        });
+    },
+    edit : function() {
+        var data = {
+            title: $('#title').val(),
+            author: $('#author').val(),
+            content: $('#content').val()
+        };
+        $.ajax({
+            type: 'PUT',
+            url: '/posts/' + $('#id').val(),
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data),
+            error:function(request,status,error){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+        }).done(function() {
             location.reload();
         }).fail(function (error) {
             alert(error);
         });
     }
-
 };
 
 main.init();

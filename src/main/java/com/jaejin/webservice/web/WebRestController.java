@@ -1,12 +1,10 @@
 package com.jaejin.webservice.web;
 
 import com.jaejin.webservice.dto.posts.PostsSaveRequestDto;
+import com.jaejin.webservice.dto.puts.PutsSaveRequestDto;
 import com.jaejin.webservice.service.PostsService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
@@ -23,4 +21,7 @@ public class WebRestController {
     public void savePosts(@RequestBody PostsSaveRequestDto dto){
         postsService.save(dto);
     }
+
+    @PutMapping("/posts/{id}")
+    public void editPosts(@RequestBody PutsSaveRequestDto dto, @PathVariable Long id) { postsService.edit(dto, id); }
 }
