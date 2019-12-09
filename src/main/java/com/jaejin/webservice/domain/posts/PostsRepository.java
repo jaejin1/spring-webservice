@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 // JpaRepository<Entity클래스, PK타입> 을 상속하면 기본적인 CRUD 메소드 자동생성됨.
@@ -17,13 +18,14 @@ public interface PostsRepository extends JpaRepository<Posts, Long> {
 
     @Query("SELECT p " +
     "FROM Posts p " +
-    "WHERE p.id = ?1")
-    Stream<Posts> findPostById(Long id);
+    "WHERE p.id = :id")
+    Stream<Posts> findPostById(@Param("id") Long id);
 
     @Modifying
-    @Query("UPDATE Posts p SET p.author = :author, p.content = :content, p.title = :title WHERE p.id = :id")
+    @Query("UPDATE Posts p SET p.author = :author, p.content = :content, p.title = :title, p.modifiedDate = :modifiedDate WHERE p.id = :id")
     void editPost(@Param("author") String author,
                   @Param("content") String content,
                   @Param("title") String title,
+                  @Param("modifiedDate") LocalDateTime modifiedDate,
                   @Param("id") Long id);
 }

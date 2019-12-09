@@ -2,7 +2,7 @@ POST http://localhost:8080/posts
 Content-Type: application/json
 
 {
-  "title": "test",
-  "content": "test content",
-  "author": "tester"
+"title": "test",
+"content": "test content",
+"author": "tester"
 }
