@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,11 +26,19 @@ public class PostsService {
 
     @Transactional
     public void edit(PutsSaveRequestDto dto, Long id) {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+
         postsRepository.editPost(
                 dto.toEntity().getAuthor(),
                 dto.toEntity().getContent(),
                 dto.toEntity().getTitle(),
+                currentDateTime,
                 id);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        postsRepository.deleteById(id);
     }
 
     @Transactional(readOnly = true)

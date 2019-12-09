@@ -7,6 +7,9 @@ var main = {
         $('#btn-edit').on('click', function() {
             _this.edit();
         })
+        $('#btn-delete').on('click', function() {
+            _this.delete();
+        })
     },
     save : function () {
         var data = {
@@ -44,6 +47,20 @@ var main = {
             }
         }).done(function() {
             location.reload();
+        }).fail(function (error) {
+            alert(error);
+        });
+    },
+    delete : function() {
+        $.ajax({
+            type: 'DELETE',
+            url: '/posts/' + $('#id').val(),
+            contentType:'application/json; charset=utf-8',
+            error:function(request,status,error){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            }
+        }).done(function() {
+            location.href = "/";
         }).fail(function (error) {
             alert(error);
         });

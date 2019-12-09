@@ -24,4 +24,7 @@ public class WebRestController {
 
     @PutMapping("/posts/{id}")
     public void editPosts(@RequestBody PutsSaveRequestDto dto, @PathVariable Long id) { postsService.edit(dto, id); }
+
+    @DeleteMapping("/posts/{id}")
+    public void deletePosts(@PathVariable Long id) { postsService.delete(id); }
 }
