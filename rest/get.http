@@ -7,3 +7,8 @@ GET http://localhost:8080/posts
 Content-Type: application/json
 
 ###
+
+GET http://localhost:8080/students/2
+Content-Type: application/json
+
+###

@@ -14,7 +14,7 @@ Content-Type: application/json
 
 {
   "name": "test",
-  "sex": "test content",
+  "sex": "test ",
   "password": "tester",
   "birthDay": "tester",
   "phone": "tester",

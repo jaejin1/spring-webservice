@@ -1,5 +1,6 @@
 package com.jaejin.webservice.domain.students;
 
+import com.jaejin.webservice.dto.students.StudentsDto.UpdateStudentReq;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -7,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Getter
 @Entity
 public class Students extends BaseTimeEntity {
@@ -17,17 +18,11 @@ public class Students extends BaseTimeEntity {
     private Long id;
 
     private String studentId;
-
     private String password;
-
     private String name;
-
     private String sex;
-
     private String birthDay;
-
     private String email;
-
     private String phone;
 
     @Builder
@@ -42,4 +37,10 @@ public class Students extends BaseTimeEntity {
         this.phone = phone;
     }
 
+    public void updateStudent(UpdateStudentReq dto) {
+        this.password = dto.getPassword();
+        this.birthDay = dto.getBirthDay();
+        this.phone = dto.getPhone();
+        this.email = dto.getEmail();
+    }
 }

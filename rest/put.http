@@ -8,3 +8,15 @@ Content-Type: application/json
 }
 
 ###
+
+PUT http://localhost:8080/students/2
+Content-Type: application/json
+
+{
+  "password": "update password",
+  "birthDay": "update birthDay",
+  "phone": "update phone",
+  "email": "update emailemail"
+}
+
+###

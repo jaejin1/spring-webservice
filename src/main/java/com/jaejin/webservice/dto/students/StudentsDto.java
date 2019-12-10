@@ -1,19 +1,13 @@
 package com.jaejin.webservice.dto.students;
 
-
 import com.jaejin.webservice.domain.students.Students;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.stereotype.Service;
+import lombok.*;
 
 public class StudentsDto {
 
     @Getter
-    @Setter
-    @NoArgsConstructor
-    public static class RegistStudentInfo {
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class RegistStudentReq {
 
         private String name;
         private String sex;
@@ -23,7 +17,7 @@ public class StudentsDto {
         private String email;
 
         @Builder
-        public RegistStudentInfo(String name, String sex, String password, String birthDay, String phone, String email) {
+        public RegistStudentReq(String name, String sex, String password, String birthDay, String phone, String email) {
             this.name = name;
             this.sex = sex;
             this.password = password;
@@ -45,18 +39,43 @@ public class StudentsDto {
     }
 
     @Getter
-    public static class ChangeEmailInfo {
-        private Long studentId;
-        private String beforeEmail;
-        private String afterEmail;
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class UpdateStudentReq {
+        private String password;
+        private String birthDay;
+        private String phone;
+        private String email;
+
+        @Builder
+        public UpdateStudentReq(final String password,
+                          final String birthDay,
+                          final String phone,
+                          final String email) {
+            this.password = password;
+            this.birthDay = birthDay;
+            this.phone = phone;
+            this.email = email;
+        }
     }
 
+
     @Getter
-    @Setter
-    public static class MyInfo {
-        private Long studentId;
+    public static class Res {
         private String name;
+        private String sex;
+        private String password;
+        private String birthDay;
+        private String phone;
         private String email;
+
+        public Res(Students students) {
+            this.name = students.getName();
+            this.sex = students.getSex();
+            this.password = students.getPassword();
+            this.birthDay = students.getBirthDay();
+            this.phone = students.getPhone();
+            this.email = students.getEmail();
+        }
     }
 
 }
