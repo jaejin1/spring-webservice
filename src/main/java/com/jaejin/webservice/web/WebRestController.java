@@ -2,7 +2,6 @@ package com.jaejin.webservice.web;
 
 import com.jaejin.webservice.domain.posts.Posts;
 import com.jaejin.webservice.dto.posts.PostsSaveRequestDto;
-import com.jaejin.webservice.dto.puts.PutsSaveRequestDto;
 import com.jaejin.webservice.service.PostsService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -37,8 +36,12 @@ public class WebRestController {
     }
 
     @PutMapping("/posts/{id}")
-    public void editPosts(@RequestBody PutsSaveRequestDto dto, @PathVariable Long id) { postsService.edit(dto, id); }
+    public void editPosts(@RequestBody PostsSaveRequestDto dto, @PathVariable Long id) {
+        postsService.edit(dto, id);
+    }
 
     @DeleteMapping("/posts/{id}")
-    public void deletePosts(@PathVariable Long id) { postsService.delete(id); }
+    public void deletePosts(@PathVariable Long id) {
+        postsService.delete(id);
+    }
 }

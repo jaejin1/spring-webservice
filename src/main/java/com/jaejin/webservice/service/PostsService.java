@@ -5,8 +5,9 @@ import com.jaejin.webservice.domain.posts.PostsRepository;
 import com.jaejin.webservice.dto.posts.PostsDetailResponseDto;
 import com.jaejin.webservice.dto.posts.PostsMainResponseDto;
 import com.jaejin.webservice.dto.posts.PostsSaveRequestDto;
-import com.jaejin.webservice.dto.puts.PutsSaveRequestDto;
 import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor
+@AllArgsConstructor // lombok
 @Service
 public class PostsService {
     private PostsRepository postsRepository;
+
+//     lombok의 AllArgsConstructor가 대신해줌.
+//    @Autowired
+//    public PostsService(PostsRepository postsRepository) {
+//        this.postsRepository = postsRepository;
+//    }
 
     // 모소드 내에서 Exception이 발생하면 해당 메소드에서 이뤄진 모든 DB작업 초기화
     @Transactional // DB 데이터 등록/수정/삭제 하는 service 메소드는 필수임.
@@ -28,7 +35,7 @@ public class PostsService {
     }
 
     @Transactional
-    public void edit(PutsSaveRequestDto dto, Long id) {
+    public void edit(PostsSaveRequestDto dto, Long id) {
         LocalDateTime currentDateTime = LocalDateTime.now();
 
         postsRepository.editPost(

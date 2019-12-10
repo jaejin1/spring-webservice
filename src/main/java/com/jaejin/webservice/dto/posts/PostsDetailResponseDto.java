@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Getter
 public class PostsDetailResponseDto {
-    private long id;
+    private Long id;
     private String title;
     private String author;
     private String content;

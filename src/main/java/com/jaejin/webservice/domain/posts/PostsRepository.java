@@ -4,12 +4,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Stream;
 
 // JpaRepository<Entity클래스, PK타입> 을 상속하면 기본적인 CRUD 메소드 자동생성됨.
+@Repository
 public interface PostsRepository extends JpaRepository<Posts, Long> {
 
     @Query("SELECT p " +

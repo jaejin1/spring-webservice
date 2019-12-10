@@ -3,7 +3,6 @@ package com.jaejin.webservice.service;
 import com.jaejin.webservice.domain.posts.Posts;
 import com.jaejin.webservice.domain.posts.PostsRepository;
 import com.jaejin.webservice.dto.posts.PostsSaveRequestDto;
-import com.jaejin.webservice.dto.puts.PutsSaveRequestDto;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,7 +59,7 @@ public class PostServiceTest {
 
         postsService.save(post_dto);
 
-        PutsSaveRequestDto put_dto = PutsSaveRequestDto.builder()
+        PostsSaveRequestDto put_dto = PostsSaveRequestDto.builder()
                 .author("jaejin@gmail.com-update")
                 .content("test content-update")
                 .title("test title-update")
